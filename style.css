@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+#passwordGenerated {
+  margin: 10px;
+}
+
+button {
+  margin-top: 10px;
+  border: none;
+  padding: 18px 20px;
+  border-radius: 7px;
+  background-color: hsl(218, 100%, 50%);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+button:hover {
+  background-color: hsla(218, 100%, 55%);
+}
+
+button:active {
+  background-color: hsla(218, 100%, 65%);
+}
