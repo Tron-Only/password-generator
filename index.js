@@ -1,54 +1,54 @@
-const passwordLength = 12;
-const includeLowercase = false;
-const includeUppercase = true;
-const includeNumbers = true;
-const includeSymbols = true;
-const passwordGenerated = document.getElementById("passwordGenerated");
-const title = document.getElementById("title");
-const button = document.getElementById("button");
+const uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowercaseChar = "abcdefghijklmnopqrstuvwxyz";
+const numberchar = "0123456789";
+const specialchar = "!@#$%^&*()_+-=";
 
-// const password = generatePassword(
-//   passwordLength,
-//   includeLowercase,
-//   includeUppercase,
-//   includeNumbers,
-//   includeSymbols
-// );
+function generatePassword() {
+  const uppercase = document.getElementById("uppercase").checked;
+  const lowercase = document.getElementById("lowercase").checked;
+  const numbers = document.getElementById("numbers").checked;
+  const special = document.getElementById("special").checked;
+  const passLength = document.getElementById("pass-length").value;
+  const passwordGenerated = document.getElementById("password-generated");
 
-function generatePassword(
-  length,
-  includeLowercase,
-  includeUppercase,
-  includeNumbers,
-  includeSymbols
-) {
-  const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
-  const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const numberChars = "0123456789";
-  const symbolChars = "!@#$%^&*()_+-=";
-
-  let allowedChars = "";
-  let password = "";
-
-  allowedChars += includeLowercase ? lowercaseChars : "";
-  allowedChars += includeUppercase ? uppercaseChars : "";
-  allowedChars += includeNumbers ? numberChars : "";
-  allowedChars += includeSymbols ? symbolChars : "";
-
-  if (length <= 0) {
-    passwordGenerated.textContent = `(password length must be at least 1)`;
+  let allowedChar = "";
+  let finalPass = "";
+  if (uppercase) {
+    allowedChar += uppercaseChar;
+  }
+  if (lowercase) {
+    allowedChar += lowercaseChar;
+  }
+  if (numbers) {
+    allowedChar += numberchar;
+  }
+  if (special) {
+    allowedChar += specialchar;
   }
 
-  if (allowedChars.length === 0) {
-    passwordGenerated.textContent = `(At least one set of characters needs to be selected)`;
+  for (let i = 0; i < passLength; i++) {
+    const index = Math.floor(Math.random() * allowedChar.length + 1);
+    finalPass += allowedChar.charAt(index);
   }
 
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * allowedChars.length);
-    password += allowedChars[randomIndex];
-  }
-
-  passwordGenerated.textContent = password;
-  title.innerHTML = "Your Generated Password is:";
-  button.innerText = "Regenerate";
+  passwordGenerated.textContent = finalPass;
 }
+
+function copyText() {
+  const passwordGenerated =
+    document.getElementById("password-generated").textContent;
+  const copyBtn = document.getElementById("copy-pass");
+
+  navigator.clipboard.writeText(passwordGenerated).then(() => {
+    copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i> Copied!`;
+    copyBtn.classList.add("buttonCopied");
+    copyBtn.style.color = "#151a5d";
+
+    setTimeout(() => {
+      copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i> Copy to Clipboard`;
+      copyBtn.classList.remove("buttonCopied");
+    }, 1500);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", generatePassword);

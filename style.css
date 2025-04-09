@@ -1,28 +1,79 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  background-color: #175ddc;
+  color: #020f66;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
 }
 
-#passwordGenerated {
-  margin: 10px;
+#container {
+  background-color: white;
+  width: 50em;
+  padding: 4em 3em;
+  border-radius: 10px;
+}
+
+#password-field {
+  background-color: #e6ebef;
+  height: 4rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 1em;
+  width: 40em;
+  margin: auto;
+  cursor: text;
+  margin-bottom: 1em;
+  border-radius: 12px;
+}
+
+#password-generated {
+  font-size: 2em;
 }
 
 button {
-  margin-top: 10px;
+  padding: 1em 2em;
   border: none;
-  padding: 18px 20px;
-  border-radius: 7px;
-  background-color: hsl(218, 100%, 50%);
+  border-radius: 5px;
+  background-color: rgb(85, 85, 255);
   color: white;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.15s;
+  transition: background-color 0.1s;
 }
 
 button:hover {
-  background-color: hsla(218, 100%, 55%);
+  background-color: hsl(240, 100%, 60%);
 }
 
 button:active {
-  background-color: hsla(218, 100%, 65%);
+  background-color: hsl(240, 100%, 55%);
+}
+
+.buttonCopied,
+.buttonCopied:hover {
+  background-color: #ffbf00;
+}
+
+#copy-pass {
+  min-width: 172px;
+  min-height: 42px;
+}
+
+fieldset {
+  width: 40%;
+  margin: 2em auto;
+  padding: 0.7em;
+}
+
+legend {
+  margin: auto;
+}
+
+#pass-length {
+  font-size: 1em;
+  border: none;
+  margin: 0 auto;
 }
